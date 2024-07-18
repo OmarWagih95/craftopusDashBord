@@ -31,3 +31,27 @@ body {
     text-wrap: balance;
   }
 }
+
+input {
+  @apply border-2 border-gray-500 w-full mb-2 rounded-md h-11;
+   
+}
+
+input:focus,textarea:focus {
+  @apply border-4 border-purple-700
+}
+textarea{
+  @apply border-2 border-gray-500 w-full h-14 rounded-md
+}
+
+h1{
+  @apply text-2xl text-purple-700 font-bold
+}
+td{
+  @apply border border-gray-400 px-4 py-2 text-center
+}
+
+th{
+  @apply border-2 border-gray-500 px-4 py-2 text-center font-bold 
+}
+
