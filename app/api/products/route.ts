@@ -50,11 +50,12 @@ export async function POST(request:Request){
    
        )
    }
-    catch(err){
-        console.log(err)
-        return NextResponse.json({msg:'error'}),
-        {status:500}
-    }
+   catch(error:any){
+
+    //  return NextResponse.json({msg:'error'}),
+    //  {status:500}
+    return Response.json({ error: error.message }, { status: 500 });
+ }
        
    //  console.log('working');
    //  return NextResponse.json({msg:'working'})
@@ -84,10 +85,11 @@ export async function POST(request:Request){
         )
    
     }
-     catch(err){
-    
-         return NextResponse.json({msg:'error'}),
-         {status:500}
+    catch(error:any){
+
+        //  return NextResponse.json({msg:'error'}),
+        //  {status:500}
+        return Response.json({ error: error.message }, { status: 500 });
      }
    
 
