@@ -2,13 +2,17 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toast';
-
+import UploadThingButton from './UploadThingButton';
+import Image from 'next/image';
 // const CategoriesForm = ({formType}:{formType:string}) => {
 const CategoriesForm = (params:{categoryID:string}) => {
     console.log(params)
     const router= useRouter();
     const [categoryName,setCategoryName]=useState('');
     const [description,setDescription]=useState('');
+    const [images,setImages]=useState([]);
+    const [imageUrl,setImageUrl]=useState('');
+
     
     // const [categoryData,setCategoryData]=useState(<any>{});
             const [categoryData,setCategoryData]=useState<any>({categoryName: '', description: ''});
@@ -21,6 +25,8 @@ const CategoriesForm = (params:{categoryID:string}) => {
    console.log(res.data.categoryName)
    await setCategoryName(res.data.categoryName)
    await setDescription(res.data.description)
+        //    await setImages(...[res.data.imgUrl])
+    await setImageUrl(res.data.imgUrl)
     }
     useEffect(() => {
         if(params.categoryID!==''){
@@ -33,7 +39,7 @@ const CategoriesForm = (params:{categoryID:string}) => {
     // }
     async function createOrUpdateCategory(e:React.FormEvent<HTMLFormElement>): Promise<void>{
         e.preventDefault();
-        const data={categoryName:categoryName,description:description,imgUrl:"www.elhamdullah.com"}
+        const data={categoryName:categoryName,description:description,imgUrl:imageUrl}
         if(params.categoryID==''){
 
             await axios.post('/api/categories/',data)
@@ -53,17 +59,30 @@ const CategoriesForm = (params:{categoryID:string}) => {
   return (
     <form 
     onSubmit={createOrUpdateCategory}
-    className='w-full h-full flex flex-col gap-4 justify-start'>
+    className='w-full h-auto flex flex-col gap-2 justify-start'>
         {params.categoryID!==''?<h1>Edit category</h1>:<h1>Add new category</h1> }
         
-        <div className='flex w-full flex-col gap-2 text-gray-400'>
+        <div className='flex w-full flex-col gap-1 text-gray-400'>
         <label  htmlFor='categoryName' >category name</label>
         <input 
         value={categoryName}
         onChange={e=>setCategoryName(e.target.value)}
         type='text' id='categoryName' name='categoryName' required />
         </div>
-        <div className='flex w-full flex-col gap-2 text-gray-400'>
+        <div className='flex flex-col gap-1 text-gray-400'>
+
+        <label  htmlFor='Images' >Images</label>
+        <div className='flex w-auto gap-3'>
+            <div  className='relative w-40 h-52 rounded-md border-2 border-gray-600'>
+            {imageUrl !==''&&
+                <Image fill={true} alt={imageUrl} src={imageUrl}></Image>
+            }
+            </div>
+        <UploadThingButton oldUrl={imageUrl} setImageUrl={setImageUrl} />
+  
+        </div>
+        </div>       
+        <div className='flex w-full flex-col gap-1 text-gray-400'>
         <label  htmlFor='categoryName' >description</label>
         <textarea 
         onChange={e=>setDescription(e.target.value)}

@@ -10,7 +10,7 @@ const loadDB =async()=>{
 
 loadDB();
 
-export async function GET(req: Request){
+export async function GET(){
     // const categoryID =await req.json()
     // if(categoryID){
 

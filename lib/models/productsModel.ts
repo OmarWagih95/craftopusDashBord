@@ -1,3 +1,5 @@
+import { list } from "postcss";
+
 const { default: mongoose } = require("mongoose");
 
 const Shcema =mongoose.Schema({
@@ -9,8 +11,8 @@ const Shcema =mongoose.Schema({
         type:String,
         required:true
     },
-    imgUrl:{
-        type:String,
+    imagesUrl:{
+        type:Array,
         required:true
     },
     price:{
@@ -18,7 +20,7 @@ const Shcema =mongoose.Schema({
         required:true,
     },
     categoryID:{
-        type:Number,
+        type:String,
         required:true
     }
     });

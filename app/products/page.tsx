@@ -6,50 +6,52 @@ import { toast, ToastContainer } from 'react-toast'
 
 const CategoriesPage = () => {
   const [categoryID,setcategoryID]=useState('')
-  async function deleteCategory(categoryIDD:string){
-    const data = {categoryID:categoryIDD}
+  async function deleteProduct(productID:string){
+    const data = {productID:productID}
     const config={data:data}
     // await axios.post('/api/categories/',data)
 
-    const response= await axios.delete('/api/categories/',config)
+    const response= await axios.delete('/api/products/',config)
     toast.success('deleted successfully')
-    fetchCategories()
+    fetchProducts()
   }
-    const [categories,setCategories] =useState<any[]>([]);
-    const fetchCategories = async () => {
-      const res =await axios('/api/categories')
+    const [products,setProducts] =useState<any[]>([]);
+    const fetchProducts = async () => {
+      const res =await axios('/api/products')
       // const res =await axios('/api/categories2')
       // if(res.data.json().ok){
   
-        setCategories(res.data);
+        setProducts(res.data);
         console.log(res);
       
       // }
     }
   
     useEffect(() => {
-      fetchCategories();
+      fetchProducts();
     }, [])
     
   return (
-    <div className='flex h-screen px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
+    <div className='flex min-h-screen h-auto px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
        <ToastContainer position='bottom-center' delay ={1000}/>
-      <Link className='hover:bg-purple-700 rounded-md px-4 bg-purple-800 cursor-pointer py-3' href={'/categories/pages/new'}> add new category</Link>
-      <table className='px-52 mt-2 w-full text-gray-800 '>
+      <Link className='hover:bg-purple-700 rounded-md px-4 bg-purple-800 cursor-pointer py-3' href={'/products/pages/new'}> add new product</Link>
+     <div className='w-full overflow-y-scroll h-[400px]'>
+
+      <table  className=' px-52 mt-2 w-full text-gray-800 '>
         
         <thead>
           <tr className=' border-2 border-gray-400'>
-            <th>Category Name</th>
+            <th>Product Name</th>
             <th>edit</th>
             <th>delete</th>
             </tr>
             </thead>
             <tbody>
-            {categories && categories.map((category)=>{
-        return <tr key={category.id}>
-          <td>{category.categoryName}</td>
+            {products && products.map((product)=>{
+        return <tr key={product.id}>
+          <td>{product.productName}</td>
           <td className='text-center items-center'>
-            <Link href={`/categories/pages/edit/${category._id}`} className='flex justify-center text-center items-center'>
+            <Link href={`/products/pages/edit/${product._id}`} className='flex justify-center text-center items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-purple-700 hover:text-purple-800">
   <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
   <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
@@ -60,10 +62,10 @@ const CategoriesPage = () => {
           <td className='flex justify-center text-center items-center'>
             <button 
             onClick={()=>{
-              console.log(category._id)
+              console.log(product._id)
               // const data ={_id:category._id}
               // deleteCategory({_id:category._id})
-          deleteCategory(category._id)
+          deleteProduct(product._id)
             }}
             className='flex justify-center text-center items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6  text-red-500 hover:text-red-700">
@@ -78,6 +80,7 @@ const CategoriesPage = () => {
 })}
               </tbody>
       </table>
+     </div>
       {/* {categories && categories.map((category)=>{
         return<div key={category.categoryName}  className='bg-red-600 h-12 w-full border-gray-400'></div>})} */}
     </div>

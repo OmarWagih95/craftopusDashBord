@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="  flex flex-col flex-1  h-screen justify-center items-center bg-white">
+    <main className="  flex flex-col flex-1  min-h-screen h-auto justify-center items-center bg-white">
           <h1 className="text-purple-800">welcome to your 1st dashboard </h1>
     </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
