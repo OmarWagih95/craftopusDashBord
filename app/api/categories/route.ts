@@ -56,15 +56,16 @@ export async function DELETE(request:Request){
         )
    
     }
-     catch(err){
-    
-         return NextResponse.json({msg:'error'}),
-         {status:500}
+    catch(error:any){
+
+        //  return NextResponse.json({msg:'error'}),
+        //  {status:500}
+        return Response.json({ error: error.message }, { status: 500 });
      }
    
 
 }
-export async function POST(request:Request){
+export async function POST(request:Request) {
  const newCategory=await request.json();
  console.log(newCategory.categoryName);
 
