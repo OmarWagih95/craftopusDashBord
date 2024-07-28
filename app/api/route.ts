@@ -39,10 +39,11 @@ try {
 
     )
 }
- catch(err){
+catch(error:any){
 
-     return NextResponse.json({msg:'error'}),
-     {status:500}
+    //  return NextResponse.json({msg:'error'}),
+    //  {status:500}
+    return Response.json({ error: error.message }, { status: 500 });
  }
     
 //  console.log('working');
