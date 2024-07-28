@@ -3,7 +3,7 @@ import {ConnectDB} from "@/lib/config/db"
 import productsModel from "@/lib/models/productsModel"
 import { headers } from "next/headers";
 import categoriesModel from "@/lib/models/categoryModel";
-import { NextApiRequest } from "next";
+// import { NextRequest } from "next";
 
 const loadDB =async()=>{
     console.log('hna');
@@ -12,7 +12,7 @@ const loadDB =async()=>{
 
 loadDB();
 
-export async function GET(request: NextApiRequest ){
+export async function GET(request: Request ){
     // console.log(request)
     // const req= request.query?.categoryID
     // console.log(req)
