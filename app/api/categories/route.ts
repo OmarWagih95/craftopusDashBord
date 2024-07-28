@@ -73,16 +73,16 @@ try {
     console.log(savedCategory.categoryName);
     // const savedCategory =await new categoriesModel({...newCategory}).save();
     // console.log(savedCategory.title);
-    // return NextResponse.json({msg:'done'}),{
-    //     status:200
-    // }
-    return new Response(JSON.stringify(savedCategory),{
-        headers: { 'Content-Type': 'application/json' },
-            status:201
-        
+    return NextResponse.json({msg:'done'}),{
+        status:200
     }
+    // return new Response(JSON.stringify(savedCategory),{
+    //     headers: { 'Content-Type': 'application/json' },
+    //         status:201
+        
+    // }
 
-    )
+    // )
 }
  catch(err){
 
