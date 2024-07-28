@@ -11,7 +11,6 @@ const Shcema =mongoose.Schema({
     },
     imgUrl:{
         type:String,
-        required:true
     },
 
 

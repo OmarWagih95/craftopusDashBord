@@ -3,6 +3,7 @@ import {ConnectDB} from "@/lib/config/db"
 import productsModel from "@/lib/models/productsModel"
 import { headers } from "next/headers";
 import categoriesModel from "@/lib/models/categoryModel";
+import { MongooseError } from "mongoose";
 // import { NextRequest } from "next";
 
 const loadDB =async()=>{
@@ -73,21 +74,22 @@ try {
     console.log(savedCategory.categoryName);
     // const savedCategory =await new categoriesModel({...newCategory}).save();
     // console.log(savedCategory.title);
-    return NextResponse.json({msg:'done'}),{
-        status:200
-    }
-    // return new Response(JSON.stringify(savedCategory),{
-    //     headers: { 'Content-Type': 'application/json' },
-    //         status:201
-        
+    // return NextResponse.json({msg:'done'}),{
+    //     status:200
     // }
+    return new Response(JSON.stringify(savedCategory),{
+        headers: { 'Content-Type': 'application/json' },
+            status:201
+        
+    }
 
-    // )
+    )
 }
- catch(err){
+ catch(error:any){
 
-     return NextResponse.json({msg:'error'}),
-     {status:500}
+    //  return NextResponse.json({msg:'error'}),
+    //  {status:500}
+    return Response.json({ error: error.message }, { status: 500 });
  }
     
 //  console.log('working');

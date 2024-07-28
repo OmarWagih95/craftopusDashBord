@@ -39,6 +39,7 @@ const CategoriesForm = (params:{categoryID:string}) => {
     // }
     async function createOrUpdateCategory(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
+        console.log(imageUrl)
         const data={categoryName:categoryName,description:description,imgUrl:imageUrl}
         if(params.categoryID==''){
 
