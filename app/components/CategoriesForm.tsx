@@ -60,7 +60,7 @@ const CategoriesForm = (params:{categoryID:string}) => {
   return (
     <form 
     onSubmit={createOrUpdateCategory}
-    className='w-full h-auto flex flex-col gap-2 justify-start'>
+    className='w-full h-auto flex flex-col gap-2 items-start justify-start'>
         {params.categoryID!==''?<h1>Edit category</h1>:<h1>Add new category</h1> }
         
         <div className='flex w-full flex-col gap-1 text-gray-400'>

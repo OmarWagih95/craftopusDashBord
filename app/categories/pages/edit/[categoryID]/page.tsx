@@ -14,7 +14,7 @@ export default function EditCategoryPage  ({params}:{params:{categoryID:string}}
     }, [])
     
     return ( 
-        <div className='flex  px-4 py-4 justify-center min-h-screen h-auto items-center bg-white'>
+        <div className='flex  px-4 py-4 justify-start min-h-screen h-auto items-start bg-white'>
         
         <CategoriesForm categoryID={categoryID}/>
         {/* <CategoriesForm {...categoryData}/> */}

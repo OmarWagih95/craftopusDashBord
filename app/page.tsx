@@ -1,9 +1,28 @@
 import Image from "next/image";
-
+'use client'
+import { useInView } from 'framer-motion';
+import React, { useRef } from 'react'
+import CountUp from 'react-countup';
+import { FaDumbbell } from "react-icons/fa6";
+import { IoIosPricetags } from "react-icons/io";
+import { LuPackageCheck } from "react-icons/lu";
+import { IoHappy } from "react-icons/io5";
+import { GiMoneyStack } from "react-icons/gi";
+import DashboardCard from "./components/DashboardCard";
+import RecentOrders from "./components/RecentOrders";
 export default function Home() {
+  const ref =useRef(null);
+  const isInView =useInView(ref);
   return (
-    <main className="  flex flex-col flex-1  min-h-screen h-auto justify-center items-center bg-white">
-          <h1 className="text-purple-800">welcome to your 1st dashboard </h1>
+    <main className=" py-[10vh] lg:py-0 flex px-5 w-full flex-col gap-4 flex-1  min-h-screen h-auto justify-center items-center bg-white">
+          <div ref={ref} className="flex gap-4  sm:flex-row flex-col sm:h-[40vh] ">
+            <DashboardCard isInView={isInView} endNumber={70} text="completed orders" icon={<LuPackageCheck size={30} />} />
+            <DashboardCard isInView={isInView} endNumber={3240} text="profit" icon={<GiMoneyStack size={30} />} />
+            <DashboardCard isInView={isInView} endNumber={64} text="happy customers" icon={<IoHappy size={30} />} />
+           
+          
+          </div>
+          <RecentOrders className='  shadow-sm drop-shadow-lg shadow-gray-400 rounded-md h-auto min-h-[25vh] lg:h-[50vh]   w-[90vw] lg:w-[65vw]'/>
     </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     //   <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

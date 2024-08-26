@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import DashboardPanel from "./components/DashboardPanel";
+import MobNav from "./components/MobNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en" className="relative flex">
       <body className={`${inter.className} flex` }>
       <DashboardPanel></DashboardPanel >
-<div className="lg:w-[75vw] w-[85vw]">
+
+      <MobNav />
+<div className=" min-w-[100vw] lg:min-w-[75vw]  ">
 
         {children}
 </div>

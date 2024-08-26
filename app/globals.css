@@ -45,13 +45,34 @@ textarea{
 }
 
 h1{
-  @apply text-2xl text-purple-700 font-bold
+  @apply text-3xl font-bold
+}
+h2{
+  @apply text-2xl font-semibold
+}
+h3{
+  @apply text-lg font-semibold
 }
 td{
-  @apply border border-gray-400 px-4 py-2 text-center
+  @apply  lg:px-4 lg:py-2 text-center font-light text-gray-600
+}
+/* td{
+  @apply border border-gray-400 lg:px-4 lg:py-2 text-center
+} */
+option{
+  @apply text-black
 }
 
 th{
-  @apply border-2 border-gray-500 px-4 py-2 text-center font-bold 
+  @apply  lg:px-4 lg:py-2 text-center font-normal 
 }
 
+thead{
+  @apply border-b border-gray-300
+}
+
+
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg  bg-purple-800 min-w-[210px] flex flex-col gap-2 justify-center items-center;
+}

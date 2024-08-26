@@ -32,13 +32,13 @@ const CategoriesPage = () => {
     }, [])
     
   return (
-    <div className='flex h-screen px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
+    <div className='flex  lg:mt-0 h-screen px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
        <ToastContainer position='bottom-center' delay ={1000}/>
-      <Link className='hover:bg-purple-700 rounded-md px-4 bg-purple-800 cursor-pointer py-3' href={'/categories/pages/new'}> add new category</Link>
+      <Link className='hover:bg-purple-700 rounded-md px-4 mt-16 bg-purple-800 cursor-pointer py-3' href={'/categories/pages/new'}> add new category</Link>
       <table className='px-52 mt-2 w-full text-gray-800 '>
         
         <thead>
-          <tr className=' border-2 border-gray-400'>
+          <tr className=' '>
             <th>Category Name</th>
             <th>edit</th>
             <th>delete</th>

@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toast';
 const Page = () => {
 
   return (
-    <div className='flex w-full px-4 py-4 justify-center min-h-screen h-auto items-center bg-white' >
+    <div className='flex w-full px-4 py-4 justify-start min-h-screen h-auto items-start bg-white' >
         <ToastContainer delay={3000} position='bottom-center'/>
         <CategoriesForm categoryID=''/>
       

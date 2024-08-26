@@ -3,69 +3,88 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast, ToastContainer } from 'react-toast'
+import OrderStatus from '../components/OrderStatus'
+import BasicModal from '../components/BasicModal'
 
-const CategoriesPage = () => {
-  const [categoryID,setcategoryID]=useState('')
-  async function deleteProduct(productID:string){
-    const data = {productID:productID}
-    const config={data:data}
+const OrdersPage = () => {
+  
+  // const[index,setIndex]=useState(0);
+  const [orderID,setOrderID]=useState('')
+  async function deleteOrder(orderID:string){
+    // const data = {categoryID:categoryIDD}
+    // const config={data:data}
     // await axios.post('/api/categories/',data)
 
-    const response= await axios.delete('/api/products/',config)
+    const response= await axios.delete('/api/orders/',{params:{orderID:orderID}})
     toast.success('deleted successfully')
-    fetchProducts()
+    fetchOrders()
   }
-    const [products,setProducts] =useState<any[]>([]);
-    const fetchProducts = async () => {
-      const res =await axios('/api/products')
+    const [orders,setOrders] =useState<any[]>([]);
+    const fetchOrders = async () => {
+      const res =await axios('/api/orders')
       // const res =await axios('/api/categories2')
       // if(res.data.json().ok){
   
-        setProducts(res.data);
+        setOrders(res.data);
         console.log(res);
       
       // }
     }
   
     useEffect(() => {
-      fetchProducts();
+      fetchOrders();
     }, [])
     
   return (
-    <div className='flex min-h-screen h-auto px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
+    <div className='flex  w-screen h-screen px-1 lg:px-7 py-3 bg-white flex-col gap-5 justify-start items-start'>
        <ToastContainer position='bottom-center' delay ={1000}/>
-      <Link className='hover:bg-purple-700 mt-16 rounded-md px-4 bg-purple-800 cursor-pointer py-3' href={'/products/pages/new'}> add new product</Link>
-     <div className='w-full overflow-y-scroll h-[400px]'>
+      {/* <Link className='hover:bg-purple-700 rounded-md px-4 bg-purple-800 cursor-pointer py-3' href={'/categories/pages/new'}> add new category</Link> */}
+    <div className='overflow-x-scroll w-[90vw]'>
 
-      <table  className=' px-52 mt-2 w-full text-gray-800 '>
+      <table className='w-full  px-52 mt-16 lg:mt-2   text-gray-800 '>
         
         <thead>
-          <tr className=' border-2 border-gray-400'>
-            <th>Product Name</th>
-            <th>edit</th>
+          <tr className='w-full '>
+            <th>No</th>
+            <th>order date</th>
+            <th>status</th>
+            <th>total</th>
+            <th>customer name</th>
+            <th>whatsApp</th>
+            <th>details</th>
+            {/* <th>edit</th> */}
             <th>delete</th>
             </tr>
             </thead>
             <tbody>
-            {products && products.map((product)=>{
-        return <tr key={product.id}>
-          <td>{product.productName}</td>
-          <td className='text-center items-center'>
-            <Link href={`/products/pages/edit/${product._id}`} className='flex justify-center text-center items-center'>
+            {orders && orders.map((order,index)=>{
+              console.log(orders.length)
+        return <tr key={order._id}>
+          <td>{index+1}</td>
+          <td>{(order.createdAt).substring(0,10)}</td>
+          {/* <td>{order.orderStatus}</td> */}
+          <td><OrderStatus orderID={order._id} statuss={order.orderStatus}/></td>
+          <td>{order.total}</td>
+          <td>{order.name}</td>
+          <td>{order.whatsappNumber}</td>
+          <td className=' cursor-pointer text-blue-500 hover:text-blue-700 underline'><BasicModal order={order}/></td>
+          {/* <td className='text-center items-center'>
+            <Link href={`/orders/pages/edit/${order._id}`} className='flex justify-center text-center items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-purple-700 hover:text-purple-800">
   <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
   <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
 </svg>
 
             </Link>
-          </td>
-          <td className='flex justify-center text-center items-center'>
+          </td> */}
+          <td >
+           <div className='flex  justify-center text-center items-center'>
+
             <button 
             onClick={()=>{
-              console.log(product._id)
-              // const data ={_id:category._id}
-              // deleteCategory({_id:category._id})
-          deleteProduct(product._id)
+              console.log(order._id)
+
+          deleteOrder(order._id)
             }}
             className='flex justify-center text-center items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6  text-red-500 hover:text-red-700">
@@ -74,17 +93,18 @@ const CategoriesPage = () => {
 
 
             </button>
+           </div>
           </td>
           {/* <div key={category.categoryName}  className='bg-red-600 h-12 w-full border-gray-400'></div> */}
         </tr>
 })}
               </tbody>
       </table>
-     </div>
+    </div>
       {/* {categories && categories.map((category)=>{
         return<div key={category.categoryName}  className='bg-red-600 h-12 w-full border-gray-400'></div>})} */}
     </div>
   )
 }
 
-export default CategoriesPage
+export default OrdersPage

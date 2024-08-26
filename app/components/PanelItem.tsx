@@ -18,10 +18,10 @@ const PanelItem = ({icon,index,title,selectedIndex,setSelectedIndex,path}:
               
     
               {icon}
-              <h2 className={`${index==selectedIndex?'text-purple-700':'text-white'}`}>
+              <h3 className={`${index==selectedIndex?'text-purple-700':'text-white'}`}>
               {title}
 
-              </h2>
+              </h3>
           </div>
   )
 }

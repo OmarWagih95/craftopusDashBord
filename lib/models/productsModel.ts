@@ -1,4 +1,3 @@
-import { list } from "postcss";
 
 const { default: mongoose } = require("mongoose");
 
