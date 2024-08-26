@@ -23,6 +23,7 @@ const ProductsForm = (params:{productID:string}) => {
         // if(res.data.json().ok){
     
           setCategories(res.data);
+          setCategoryID(res.data[0]._id)
           console.log(res);
         
         // }
@@ -86,6 +87,7 @@ const ProductsForm = (params:{productID:string}) => {
     // }
     async function createOrUpdateProduct(e:React.FormEvent<HTMLFormElement>): Promise<void>{
         e.preventDefault();
+        console.log(categoryID);
         const data={productName:productName,description:description,imagesUrl:imagesUrl,categoryID:categoryID,price:price}
         if(params.productID==''){
 
