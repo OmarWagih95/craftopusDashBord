@@ -11,7 +11,7 @@ const DashboardCard = ({isInView,endNumber,icon,text}:
     <h1 className=" font-bold text-[10vw] md:text-[7vw]">
        {
 isInView &&
-<CountUp start={0} end={endNumber} duration={6}></CountUp>
+<CountUp className='text-white' start={0} end={endNumber} duration={6}></CountUp>
 }
     </h1>
    <div className="flex justify-center text-[5vw] items-center text-center flex-col text-white">
